@@ -77,18 +77,6 @@ DATABASE_NAME=postgres
 DATABASE_USERNAME=<username>
 DATABASE_PASSWORD=<password>
 
-## Terraform Backend (Remote State)
-
-Terraform state is stored in S3:
-
-terraform {
-  backend "s3" {
-    bucket  = "sejal-strapi-fargate-task7"
-    key     = "sejal-fargate/terraform.tfstate"
-    region  = "us-east-1"
-    encrypt = true
-  }
-}
 
 ## GitHub Secrets Required
 
