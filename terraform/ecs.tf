@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "sejal_task" {
       environment = [
         {
           name  = "DATABASE_HOST"
-          value = aws_db_instance.strapi_db.address
+          value = aws_db_instance.sejal_db.address
         },
         {
           name  = "DATABASE_PORT"

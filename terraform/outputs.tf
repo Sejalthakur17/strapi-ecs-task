@@ -3,7 +3,8 @@ output "ecr_repository_url" {
 }
 
 output "rds_endpoint" {
-  value = aws_db_instance.strapi_db.endpoint
+  value = aws_db_instance.sejal_db.endpoint
+
 }
 
 output "ecs_cluster_name" {
