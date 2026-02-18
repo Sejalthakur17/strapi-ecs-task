@@ -65,11 +65,9 @@ resource "aws_ecs_service" "sejal_service" {
   desired_count   = 1
 
   network_configuration {
-    subnets = [
-      aws_subnet.public_subnet_1.id,
-      aws_subnet.public_subnet_2.id
-    ]
-    security_groups  = [aws_security_group.ecs_sg.id]
-    assign_public_ip = true
-  }
+  subnets          = data.aws_subnets.default.ids
+  security_groups  = [aws_security_group.ecs_sg.id]
+  assign_public_ip = true
+}
+
 }
