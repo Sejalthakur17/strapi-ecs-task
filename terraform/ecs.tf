@@ -30,7 +30,7 @@ resource "aws_launch_template" "ecs_lt" {
   instance_type = "t3.micro"
 
   iam_instance_profile {
-    arn = "arn:aws:iam::811738710312:instance-profile/ecsInstanceProfile"
+    name = "ecsInstanceProfile"
   }
 
   vpc_security_group_ids = [aws_security_group.ecs_sg.id]
@@ -41,6 +41,7 @@ echo ECS_CLUSTER=strapi-ec2-cluster >> /etc/ecs/ecs.config
 EOF
   )
 }
+
 
 ############################
 # AUTO SCALING GROUP
