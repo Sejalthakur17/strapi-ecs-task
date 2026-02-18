@@ -2,9 +2,10 @@
 # ECS CLUSTER
 ############################
 
-resource "aws_ecs_cluster" "strapi_cluster" {
-  name = "strapi-ec2-cluster"
+resource "aws_ecs_cluster" "sejal_cluster" {
+  name = "sejal-ec2-cluster"
 }
+
 
 ############################
 # ECS OPTIMIZED AMI
@@ -37,7 +38,7 @@ resource "aws_launch_template" "ecs_lt" {
 
   user_data = base64encode(<<EOF
 #!/bin/bash
-echo ECS_CLUSTER=strapi-ec2-cluster >> /etc/ecs/ecs.config
+echo ECS_CLUSTER=sejal-ec2-cluster >> /etc/ecs/ecs.config
 EOF
   )
 }
@@ -70,7 +71,7 @@ resource "aws_autoscaling_group" "ecs_asg" {
 ############################
 
 resource "aws_ecs_task_definition" "strapi_task" {
-  family                   = "strapi-ec2-task"
+  family = "sejal-ec2-task"
   network_mode             = "bridge"
   requires_compatibilities = ["EC2"]
 
@@ -79,7 +80,7 @@ resource "aws_ecs_task_definition" "strapi_task" {
 
   container_definitions = jsonencode([
     {
-      name      = "strapi"
+      name = "sejal-service"
       image     = var.image_url
       cpu       = 256
       memory    = 512
