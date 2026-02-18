@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "pearlthoughts-strapi-tfstate"
+    bucket  = "sejal-strapi-fargate-task7"
     key     = "sejal-fargate/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true

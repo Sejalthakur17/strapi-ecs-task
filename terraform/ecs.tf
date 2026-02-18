@@ -31,11 +31,11 @@ resource "aws_ecs_task_definition" "sejal_task" {
         protocol      = "tcp"
       }]
 
-     environment = [
-  {
-    name  = "DATABASE_CLIENT"
-    value = "postgres"
-  },
+      environment = [
+         {
+            name  = "DATABASE_CLIENT"
+            value = "postgres"
+             },
   {
     name  = "DATABASE_HOST"
     value = aws_db_instance.sejal_db.address
