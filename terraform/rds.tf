@@ -1,6 +1,10 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
-  name       = "strapi-db-subnet-group"
-  subnet_ids = [aws_subnet.public_subnet.id]
+  name = "sejal-db-subnet-group"
+
+  subnet_ids = [
+    aws_subnet.public_subnet_1.id,
+    aws_subnet.public_subnet_2.id
+  ]
 }
 
 resource "aws_db_instance" "strapi_db" {
