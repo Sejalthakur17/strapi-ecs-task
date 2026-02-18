@@ -7,5 +7,5 @@ output "rds_endpoint" {
 }
 
 output "ecs_cluster_name" {
-  value = aws_ecs_cluster.strapi_cluster.name
+  value = aws_ecs_cluster.sejal_cluster.name
 }
