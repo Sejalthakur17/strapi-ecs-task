@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "sejal_task" {
         containerPort = 1337
         protocol      = "tcp"
       }]
-      
+
       logConfiguration = {
       logDriver = "awslogs"
       options = {
@@ -64,6 +64,22 @@ resource "aws_ecs_task_definition" "sejal_task" {
   {
     name  = "DATABASE_PASSWORD"
     value = var.db_password
+  }
+  {
+    name  = "APP_KEYS"
+    value = "key1,key2,key3,key4"
+  },
+  {
+    name  = "API_TOKEN_SALT"
+    value = "randomsalt123"
+  },
+  {
+    name  = "ADMIN_JWT_SECRET"
+    value = "adminjwtsecret123"
+  },
+  {
+    name  = "JWT_SECRET"
+    value = "jwtsecret123"
   }
 ]
 
