@@ -64,7 +64,7 @@ resource "aws_ecs_task_definition" "sejal_task" {
   {
     name  = "DATABASE_PASSWORD"
     value = var.db_password
-  }
+  },
   {
     name  = "APP_KEYS"
     value = "key1,key2,key3,key4"
@@ -82,7 +82,6 @@ resource "aws_ecs_task_definition" "sejal_task" {
     value = "jwtsecret123"
   }
 ]
-
     }
   ])
 }
