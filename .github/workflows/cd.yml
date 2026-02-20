@@ -7,8 +7,11 @@ on:
 jobs:
   infra:
     runs-on: ubuntu-latest
+  env:
+      TF_VAR_vpc_id: ${{ secrets.VPC_ID }}
+      TF_VAR_image_url: dummy
 
-    steps:
+  steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -27,8 +30,12 @@ jobs:
           cd terraform
           terraform init -reconfigure
 
-      - name: Terraform Apply (Create ECR + ECS)
+      - name: Terraform Plan
         run: |
+         cd terraform
+         terraform plan
+
+      - name: Terraform Apply
+          run: |
           cd terraform
-          terraform apply -auto-approve \
-            -var="image_url=dummy"
+          terraform apply -auto-approve
