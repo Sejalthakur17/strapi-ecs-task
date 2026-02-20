@@ -107,7 +107,7 @@ resource "aws_ecs_task_definition" "sejal_task" {
 ############################
 resource "aws_security_group" "ecs_sg" {
   name        = "sejal-ecs-sg"
-  description = "Allow traffic from ALB to ECS"
+  description = "Managed by Terraform"
   vpc_id      = data.aws_vpc.selected.id
 
   ingress {
@@ -123,7 +123,7 @@ resource "aws_security_group" "ecs_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
 }
 resource "aws_ecs_service" "sejal_service" {
   name            = "sejal-service"
