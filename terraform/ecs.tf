@@ -123,9 +123,7 @@ resource "aws_security_group" "ecs_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  lifecycle {
-    prevent_destroy = true
-  }
+  
 }
 resource "aws_ecs_service" "sejal_service" {
   name            = "sejal-service"
