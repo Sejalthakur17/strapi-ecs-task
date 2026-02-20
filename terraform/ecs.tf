@@ -105,18 +105,43 @@ resource "aws_ecs_task_definition" "sejal_task" {
 ############################
 # ECS SERVICE (FARGATE)
 ############################
+resource "aws_security_group" "ecs_sg" {
+  name        = "sejal-ecs-service-sg"
+  description = "Allow traffic from ALB to ECS"
+  vpc_id      = data.aws_vpc.selected.id
 
+  ingress {
+    from_port       = 1337
+    to_port         = 1337
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb_sg.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 resource "aws_ecs_service" "sejal_service" {
   name            = "sejal-service"
   cluster         = aws_ecs_cluster.sejal_cluster.id
   task_definition = aws_ecs_task_definition.sejal_task.arn
   launch_type     = "FARGATE"
   desired_count   = 1
+  load_balancer {
+  target_group_arn = aws_lb_target_group.ecs_tg.arn
+  container_name   = "sejal-container"  
+  container_port   = 1337
+}
 
   network_configuration {
   subnets          = data.aws_subnets.default.ids
   security_groups  = [aws_security_group.ecs_sg.id]
-  assign_public_ip = true
+  assign_public_ip = false
 }
-
+  depends_on = [
+    aws_lb_listener.ecs_listener
+  ]
 }
